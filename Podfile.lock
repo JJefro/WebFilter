@@ -1,0 +1,34 @@
+PODS:
+  - IQKeyboardManagerSwift (6.5.6)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - R.swift (5.4.0):
+    - R.swift.Library (~> 5.3.0)
+  - R.swift.Library (5.3.0)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - IQKeyboardManagerSwift
+  - NVActivityIndicatorView
+  - R.swift
+  - SnapKit (~> 5.0.0)
+
+SPEC REPOS:
+  trunk:
+    - IQKeyboardManagerSwift
+    - NVActivityIndicatorView
+    - R.swift
+    - R.swift.Library
+    - SnapKit
+
+SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  R.swift: c533450b0f7dc494e0993f5f1a1db925d84c3006
+  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: d68f58654e909035a3bb2e2b2be2ba55a887a0ec
+
+COCOAPODS: 1.11.2
