@@ -15,10 +15,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let navController = UINavigationController(rootViewController: ViewController())
+        let navController = UINavigationController(rootViewController: WebViewController())
 
         let barAppearance = UINavigationBarAppearance()
         barAppearance.backgroundColor = UIColor.clear
+        barAppearance.titleTextAttributes = [NSAttributedString.Key.font: R.font.sfProDisplayBold(size: 17)!]
         navController.navigationBar.standardAppearance = barAppearance
         navController.navigationBar.scrollEdgeAppearance = barAppearance
 
