@@ -7,13 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		970ED785279DEFC3007D7200 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970ED784279DEFC3007D7200 /* NavigationView.swift */; };
+		970ED789279EAADE007D7200 /* WebViewController + Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970ED788279EAADE007D7200 /* WebViewController + Configurations.swift */; };
 		97354C9B279C54B600E449F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97354C9A279C54B600E449F6 /* AppDelegate.swift */; };
 		97354C9D279C54B600E449F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97354C9C279C54B600E449F6 /* SceneDelegate.swift */; };
-		97354C9F279C54B600E449F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97354C9E279C54B600E449F6 /* ViewController.swift */; };
+		97354C9F279C54B600E449F6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97354C9E279C54B600E449F6 /* WebViewController.swift */; };
 		97354CA4279C54B700E449F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97354CA3279C54B700E449F6 /* Assets.xcassets */; };
 		97354CA7279C54B700E449F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97354CA5279C54B700E449F6 /* LaunchScreen.storyboard */; };
+		9760B475279D825B002ECBED /* TextFieldsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9760B46D279D825B002ECBED /* TextFieldsModel.swift */; };
+		9760B476279D825B002ECBED /* TextFieldsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9760B46E279D825B002ECBED /* TextFieldsSettings.swift */; };
+		9760B477279D825B002ECBED /* TextFieldsView + UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9760B470279D825B002ECBED /* TextFieldsView + UITextFieldDelegate.swift */; };
+		9760B478279D825B002ECBED /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9760B472279D825B002ECBED /* TextFieldView.swift */; };
+		9760B479279D825B002ECBED /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9760B473279D825B002ECBED /* CustomTextField.swift */; };
+		9760B47A279D825B002ECBED /* TextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9760B474279D825B002ECBED /* TextFieldView.xib */; };
+		9760B47D279D8312002ECBED /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9760B47B279D8312002ECBED /* SF-Pro-Display-Bold.otf */; };
+		9760B47E279D8312002ECBED /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9760B47C279D8312002ECBED /* SF-Pro-Display-Regular.otf */; };
+		977CF811279F0D4800AA786A /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977CF810279F0D4800AA786A /* WebViewModel.swift */; };
 		97BB53A1279C57B500884D88 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97BB53A3279C57B500884D88 /* Localizable.strings */; };
 		97BB53AC279C58FA00884D88 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BB53AB279C58FA00884D88 /* R.generated.swift */; };
+		97F616DD27A15DCE003BAD9E /* FormattedURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F616DC27A15DCE003BAD9E /* FormattedURL.swift */; };
 		F5DB7C16C745F5C452849C92 /* Pods_WebFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B229124612A88DEBFB2F09D /* Pods_WebFilter.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,15 +33,27 @@
 		2B229124612A88DEBFB2F09D /* Pods_WebFilter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebFilter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FBD3EA475F08820F9C9A194 /* Pods-WebFilter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebFilter.debug.xcconfig"; path = "Target Support Files/Pods-WebFilter/Pods-WebFilter.debug.xcconfig"; sourceTree = "<group>"; };
 		723BB84B105CB35599B1ACFD /* Pods-WebFilter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebFilter.release.xcconfig"; path = "Target Support Files/Pods-WebFilter/Pods-WebFilter.release.xcconfig"; sourceTree = "<group>"; };
+		970ED784279DEFC3007D7200 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		970ED788279EAADE007D7200 /* WebViewController + Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController + Configurations.swift"; sourceTree = "<group>"; };
 		97354C97279C54B600E449F6 /* WebFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97354C9A279C54B600E449F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97354C9C279C54B600E449F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		97354C9E279C54B600E449F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		97354C9E279C54B600E449F6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		97354CA3279C54B700E449F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97354CA6279C54B700E449F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97354CA8279C54B700E449F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9760B46D279D825B002ECBED /* TextFieldsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsModel.swift; sourceTree = "<group>"; };
+		9760B46E279D825B002ECBED /* TextFieldsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsSettings.swift; sourceTree = "<group>"; };
+		9760B470279D825B002ECBED /* TextFieldsView + UITextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextFieldsView + UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		9760B472279D825B002ECBED /* TextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		9760B473279D825B002ECBED /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		9760B474279D825B002ECBED /* TextFieldView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldView.xib; sourceTree = "<group>"; };
+		9760B47B279D8312002ECBED /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		9760B47C279D8312002ECBED /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		977CF810279F0D4800AA786A /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		97BB53A2279C57B500884D88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		97BB53AB279C58FA00884D88 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		97F616DC27A15DCE003BAD9E /* FormattedURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +68,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		970ED786279EAAA7007D7200 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				970ED787279EAACA007D7200 /* WebViewController */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		970ED787279EAACA007D7200 /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				970ED788279EAADE007D7200 /* WebViewController + Configurations.swift */,
+			);
+			path = WebViewController;
+			sourceTree = "<group>";
+		};
 		97354C8E279C54B600E449F6 = {
 			isa = PBXGroup;
 			children = (
@@ -66,12 +106,50 @@
 			isa = PBXGroup;
 			children = (
 				97BB53AB279C58FA00884D88 /* R.generated.swift */,
+				9760B46B279D825B002ECBED /* TextFieldsView */,
 				97BB53A7279C57E900884D88 /* MainView */,
 				97BB539E279C577C00884D88 /* Resources */,
 				97BB539D279C575900884D88 /* SupportingFiles */,
 				97354CA8279C54B700E449F6 /* Info.plist */,
 			);
 			path = WebFilter;
+			sourceTree = "<group>";
+		};
+		9760B46B279D825B002ECBED /* TextFieldsView */ = {
+			isa = PBXGroup;
+			children = (
+				9760B46F279D825B002ECBED /* Extensions */,
+				9760B471279D825B002ECBED /* Views */,
+				9760B46C279D825B002ECBED /* Models */,
+			);
+			path = TextFieldsView;
+			sourceTree = "<group>";
+		};
+		9760B46C279D825B002ECBED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9760B46D279D825B002ECBED /* TextFieldsModel.swift */,
+				9760B46E279D825B002ECBED /* TextFieldsSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9760B46F279D825B002ECBED /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9760B470279D825B002ECBED /* TextFieldsView + UITextFieldDelegate.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9760B471279D825B002ECBED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9760B472279D825B002ECBED /* TextFieldView.swift */,
+				9760B473279D825B002ECBED /* CustomTextField.swift */,
+				9760B474279D825B002ECBED /* TextFieldView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		97BB539D279C575900884D88 /* SupportingFiles */ = {
@@ -97,6 +175,8 @@
 		97BB53A4279C57BD00884D88 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				9760B47B279D8312002ECBED /* SF-Pro-Display-Bold.otf */,
+				9760B47C279D8312002ECBED /* SF-Pro-Display-Regular.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -104,7 +184,7 @@
 		97BB53A6279C57D900884D88 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				97354C9E279C54B600E449F6 /* ViewController.swift */,
+				97354C9E279C54B600E449F6 /* WebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -112,6 +192,7 @@
 		97BB53A7279C57E900884D88 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				970ED786279EAAA7007D7200 /* Extensions */,
 				97BB53A8279C57F300884D88 /* Models */,
 				97BB53A9279C57FA00884D88 /* Views */,
 				97BB53A6279C57D900884D88 /* Controller */,
@@ -122,6 +203,8 @@
 		97BB53A8279C57F300884D88 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				977CF810279F0D4800AA786A /* WebViewModel.swift */,
+				97F616DC27A15DCE003BAD9E /* FormattedURL.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +212,7 @@
 		97BB53A9279C57FA00884D88 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				970ED784279DEFC3007D7200 /* NavigationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -213,7 +297,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				97354CA7279C54B700E449F6 /* LaunchScreen.storyboard in Resources */,
+				9760B47D279D8312002ECBED /* SF-Pro-Display-Bold.otf in Resources */,
 				97BB53A1279C57B500884D88 /* Localizable.strings in Resources */,
+				9760B47A279D825B002ECBED /* TextFieldView.xib in Resources */,
+				9760B47E279D8312002ECBED /* SF-Pro-Display-Regular.otf in Resources */,
 				97354CA4279C54B700E449F6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,10 +393,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97354C9F279C54B600E449F6 /* ViewController.swift in Sources */,
+				970ED789279EAADE007D7200 /* WebViewController + Configurations.swift in Sources */,
+				97354C9F279C54B600E449F6 /* WebViewController.swift in Sources */,
+				9760B475279D825B002ECBED /* TextFieldsModel.swift in Sources */,
+				97F616DD27A15DCE003BAD9E /* FormattedURL.swift in Sources */,
+				970ED785279DEFC3007D7200 /* NavigationView.swift in Sources */,
+				9760B478279D825B002ECBED /* TextFieldView.swift in Sources */,
+				9760B476279D825B002ECBED /* TextFieldsSettings.swift in Sources */,
 				97354C9B279C54B600E449F6 /* AppDelegate.swift in Sources */,
+				977CF811279F0D4800AA786A /* WebViewModel.swift in Sources */,
 				97354C9D279C54B600E449F6 /* SceneDelegate.swift in Sources */,
 				97BB53AC279C58FA00884D88 /* R.generated.swift in Sources */,
+				9760B477279D825B002ECBED /* TextFieldsView + UITextFieldDelegate.swift in Sources */,
+				9760B479279D825B002ECBED /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
