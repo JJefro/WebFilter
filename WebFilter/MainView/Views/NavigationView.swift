@@ -33,15 +33,9 @@ class NavigationView: UIView {
     private let filterButtonsHorizontalStack = UIStackView()
     private var blurEffectView = UIVisualEffectView(effect: nil)
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if UITraitCollection.current.userInterfaceStyle == .dark {
-            let darkBlur = UIBlurEffect(style: .systemUltraThinMaterialDark)
-            blurEffectView.effect = darkBlur
-        } else {
-            let lightBlur = UIBlurEffect(style: .systemUltraThinMaterialLight)
-            blurEffectView.effect = lightBlur
-        }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        configureBlurEffect()
     }
 
     override init(frame: CGRect) {
@@ -63,6 +57,7 @@ class NavigationView: UIView {
     }
 
     private func configure() {
+        configureBlurEffect()
         textFieldView.fieldSettings = .browserField
         configureButtonsHorizontalStack()
         configureNavigationButtonsHorizontalStack()
@@ -88,6 +83,7 @@ class NavigationView: UIView {
 
     private func addTextFieldView() {
         self.addSubview(textFieldView)
+        textFieldView.translatesAutoresizingMaskIntoConstraints = false
         textFieldView.snp.makeConstraints { make in
             make.height.equalTo(66)
             make.trailing.leading.equalToSuperview().inset(20)
@@ -97,6 +93,7 @@ class NavigationView: UIView {
 
     private func addButtonsHorizontalStackView() {
         self.addSubview(buttonsHorizontalStack)
+        buttonsHorizontalStack.translatesAutoresizingMaskIntoConstraints = false
         buttonsHorizontalStack.snp.makeConstraints { make in
             make.top.equalTo(textFieldView.snp.bottom)
             make.trailing.leading.bottom.equalToSuperview().inset(20)
@@ -105,24 +102,9 @@ class NavigationView: UIView {
 
     private func addButtonsView() {
         navigationButtonsHorizontalStack.addArrangedSubview(returnButton)
-        returnButton.snp.makeConstraints { make in
-            make.width.equalTo(20)
-        }
-
         navigationButtonsHorizontalStack.addArrangedSubview(forwardButton)
-        forwardButton.snp.makeConstraints { make in
-            make.width.equalTo(20)
-        }
-
         filterButtonsHorizontalStack.addArrangedSubview(addFilterButton)
-        addFilterButton.snp.makeConstraints { make in
-            make.width.equalTo(20)
-        }
-
         filterButtonsHorizontalStack.addArrangedSubview(showCurrentFiltersButton)
-        showCurrentFiltersButton.snp.makeConstraints { make in
-            make.width.equalTo(20)
-        }
     }
 
     // MARK: - Horizontal Stacks Configurations
@@ -150,23 +132,38 @@ class NavigationView: UIView {
 
     // MARK: - NavigationView Buttons Configurations
     private func configureButtons() {
-        let buttonsConfig = UIImage.SymbolConfiguration(weight: .bold)
-
-        let returnButtonImage = UIImage(systemName: "chevron.left", withConfiguration: buttonsConfig)?.withRenderingMode(.alwaysTemplate)
-        let forwardButtonImage = UIImage(systemName: "chevron.right", withConfiguration: buttonsConfig)?.withRenderingMode(.alwaysTemplate)
-        let addFilterButtonImage = UIImage(systemName: "note.text.badge.plus", withConfiguration: buttonsConfig)?.withRenderingMode(.alwaysTemplate)
-        let showSelectedFiltersButtonImage = UIImage(systemName: "eye.circle", withConfiguration: buttonsConfig)?.withRenderingMode(.alwaysTemplate)
-
-        returnButton.setImage(returnButtonImage, for: .normal)
+        returnButton.setImage(R.image.navigationView.chevronLeft(), for: .normal)
         returnButton.tintColor = R.color.navigationView.buttonTintColor()
-        
-        forwardButton.setImage(forwardButtonImage, for: .normal)
+
+        forwardButton.setImage(R.image.navigationView.chevronRight(), for: .normal)
         forwardButton.tintColor = R.color.navigationView.buttonTintColor()
 
-        addFilterButton.setImage(addFilterButtonImage, for: .normal)
+        addFilterButton.setImage(R.image.navigationView.noteTextBadgePlus(), for: .normal)
         addFilterButton.tintColor = R.color.navigationView.buttonTintColor()
 
-        showCurrentFiltersButton.setImage(showSelectedFiltersButtonImage, for: .normal)
+        showCurrentFiltersButton.setImage(R.image.navigationView.eyeCircle(), for: .normal)
         showCurrentFiltersButton.tintColor = R.color.navigationView.buttonTintColor()
+    }
+
+    // MARK: - Blur Effect Configurations
+    private func configureBlurEffect() {
+        switch traitCollection.userInterfaceStyle {
+        case .unspecified, .light:
+            if #available(iOS 13, *) {
+                blurEffectView.effect = UIBlurEffect(style: .systemUltraThinMaterialLight)
+            } else {
+                blurEffectView.effect = UIBlurEffect(style: .extraLight)
+                blurEffectView.alpha = 0.5
+            }
+        case .dark:
+            if #available(iOS 13, *) {
+                blurEffectView.effect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+            } else {
+                blurEffectView.effect = UIBlurEffect(style: .dark)
+                blurEffectView.alpha = 0.5
+            }
+        @unknown default:
+            blurEffectView.effect = nil
+        }
     }
 }

@@ -33,9 +33,10 @@ extension WebViewController {
     
     private func addNavigationView() {
         view.addSubview(navigationView)
+        navigationView.translatesAutoresizingMaskIntoConstraints = false
         navigationView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(110)
+            make.trailing.leading.bottom.equalToSuperview()
+            make.height.equalTo(100)
         }
     }
 

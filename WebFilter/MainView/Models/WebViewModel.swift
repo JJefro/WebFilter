@@ -10,16 +10,17 @@ import WebKit
 
 protocol WebViewModelDelegate: AnyObject {
     func webViewModel(_ webViewModel: WebViewModel, didUpdate urlRequest: URLRequest)
+    func webViewModel(_ webViewModel: WebViewModel, errorOccured error: NetworkError)
 }
 
 class WebViewModel {
 
     weak var delegate: WebViewModelDelegate?
 
-    private var googleComponents: URLComponents = {
+    var googleComponents: URLComponents = {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
-        urlComponents.host = "www.google.com"
+        urlComponents.host = "google.com"
         urlComponents.path = "/search"
         return urlComponents
     }()
@@ -37,10 +38,14 @@ class WebViewModel {
             }
         }
     }
-
+    
     private func performGoogleSearch(text: String) {
         var components = googleComponents
         components.queryItems = [URLQueryItem(name: "query", value: text)]
-        delegate?.webViewModel(self, didUpdate: URLRequest(url: components.url!))
+        guard let url = components.url else {
+            delegate?.webViewModel(self, errorOccured: NetworkError.badURL)
+            return
+        }
+        delegate?.webViewModel(self, didUpdate: URLRequest(url: url))
     }
 }

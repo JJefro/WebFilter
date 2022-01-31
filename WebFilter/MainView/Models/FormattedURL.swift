@@ -8,12 +8,13 @@
 import Foundation
 
 struct FormattedURL {
-    var string: String
 
     init(string: String) {
         self.string = string
     }
-
+    
+    var string: String
+    
     var url: URL? {
         var value = string
         if !value.lowercased().hasPrefix("https://") {
