@@ -26,3 +26,5 @@
 "textFields_placeholder_browserField"    = "Search or enter website";
 "textFields_placeholder_link"            = "www.example.com";
 "textFields_placeholder_validationRules" = "Password";
+
+"networkError_badURL"            = "Invalid URL";

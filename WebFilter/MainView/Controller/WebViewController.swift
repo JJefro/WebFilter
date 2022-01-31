@@ -27,7 +27,8 @@ class WebViewController: UIViewController {
     }
 
     private func loadInitialURL() {
-        let url = URL(string: "https://google.com")!
+        let googleComponents = model.googleComponents
+        guard let url = FormattedURL(string: googleComponents.host!).url else { return }
         webView.load(URLRequest(url: url))
     }
 
@@ -61,8 +62,9 @@ extension WebViewController: NavigationViewDelegate {
 extension WebViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        title = webView.url?.host
-        navigationView.textfieldText = webView.url!.absoluteString
+        guard let url = webView.url else { return }
+        title = url.host
+        navigationView.textfieldText = url.absoluteString
     }
 }
 
@@ -72,6 +74,10 @@ extension WebViewController: UIScrollViewDelegate {
 }
 
 extension WebViewController: WebViewModelDelegate {
+    func webViewModel(_ webViewModel: WebViewModel, errorOccured error: NetworkError) {
+        print(error)
+    }
+
     func webViewModel(_ webViewModel: WebViewModel, didUpdate urlRequest: URLRequest) {
         webView.load(urlRequest)
     }

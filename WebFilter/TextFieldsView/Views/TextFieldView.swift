@@ -115,19 +115,23 @@ class TextFieldView: UIView {
             txtField.textColor = R.color.textFieldsColors.tfTextColor()
         }
     }
-    
+
     func openLink(_ stringURL: String) {
-        guard let url = URL(string: stringURL) else {return}
-        let safariVC = SFSafariViewController(url: url)
-        let keywindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive})
-            .compactMap({$0 as? UIWindowScene})
-            .first?.windows
-            .filter({$0.isKeyWindow}).first
-        if var viewController = keywindow?.rootViewController {
-            while let presentedViewController = viewController.presentedViewController {
-                viewController = presentedViewController
+        if #available(iOS 13, *) {
+            guard let url = URL(string: stringURL) else {return}
+            let safariVC = SFSafariViewController(url: url)
+            let keywindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive})
+                .compactMap({$0 as? UIWindowScene})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+            if var viewController = keywindow?.rootViewController {
+                while let presentedViewController = viewController.presentedViewController {
+                    viewController = presentedViewController
+                }
+                viewController.present(safariVC, animated: true, completion: nil)
             }
-            viewController.present(safariVC, animated: true, completion: nil)
+        } else {
+
         }
     }
 }
