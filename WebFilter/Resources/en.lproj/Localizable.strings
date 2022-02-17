@@ -28,3 +28,10 @@
 "textFields_placeholder_validationRules" = "Password";
 
 "networkError_badURL"            = "Invalid URL";
+
+"mainView_addFilterAlert_title"               = "Add Filter";
+"mainView_addFilterAlert_placeholder"         = "Type new filter";
+"mainView_addFilterAlert_addButton_title"     = "Add";
+"mainView_addFilterAlert_cancelButton_title"  = "Cancel";
+
+"mainView_errorAlert_cancelButton_title"  = "Cancel";

@@ -10,6 +10,5 @@ target 'WebFilter' do
 pod 'R.swift'
 pod 'SnapKit', '~> 5.0.0'
 pod 'NVActivityIndicatorView'
-pod 'IQKeyboardManagerSwift'
 
 end

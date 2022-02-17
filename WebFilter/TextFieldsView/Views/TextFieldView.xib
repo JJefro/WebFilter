@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -64,7 +65,7 @@
                         <constraint firstAttribute="trailing" secondItem="JcB-vD-sxn" secondAttribute="trailing" constant="16" id="B5P-BS-6HN"/>
                         <constraint firstAttribute="bottom" secondItem="e7A-8x-YUH" secondAttribute="bottom" constant="11" id="Fi2-Z0-Uqa"/>
                         <constraint firstItem="JcB-vD-sxn" firstAttribute="top" secondItem="loU-HL-9AZ" secondAttribute="bottom" constant="8" id="eyg-0h-i4Q"/>
-                        <constraint firstAttribute="height" priority="750" constant="40" id="o54-FQ-n1o"/>
+                        <constraint firstAttribute="height" priority="250" constant="66" id="o54-FQ-n1o"/>
                         <constraint firstItem="JcB-vD-sxn" firstAttribute="leading" secondItem="hFq-h0-bSu" secondAttribute="leading" constant="16" id="pld-Nx-jwB"/>
                         <constraint firstAttribute="trailing" secondItem="e7A-8x-YUH" secondAttribute="trailing" constant="25" id="rlw-th-D2z"/>
                     </constraints>
@@ -86,7 +87,7 @@
     </objects>
     <resources>
         <namedColor name="textFieldsColors/tfBackground">
-            <color red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.75400000810623169" green="0.75400000810623169" blue="0.75400000810623169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textFieldsColors/tfTextColor">
             <color red="0.11400000005960464" green="0.12200000137090683" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

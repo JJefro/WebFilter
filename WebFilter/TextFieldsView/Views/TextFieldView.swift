@@ -49,6 +49,7 @@ class TextFieldView: UIView {
         txtField.delegate = self
         txtField.returnKeyType = .done
         txtField.addTarget(self, action: #selector(TextFieldView.textFieldEditingChanged(_:)), for: UIControl.Event.editingChanged)
+        txtField.backgroundColor = R.color.navigationViewColors.backgroundColor()?.withAlphaComponent(0.8)
     }
 
     private func loadViewFromNib() -> UIView? {
