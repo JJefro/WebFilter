@@ -6,11 +6,9 @@
 //
 
 import UIKit
-import WebKit
 
 protocol WebViewModelDelegate: AnyObject {
     func webViewModel(_ webViewModel: WebViewModel, didUpdate urlRequest: URLRequest)
-    func webViewModel(_ webViewModel: WebViewModel, errorOccured error: NetworkError)
 }
 
 class WebViewModel {
@@ -42,10 +40,7 @@ class WebViewModel {
     private func performGoogleSearch(text: String) {
         var components = googleComponents
         components.queryItems = [URLQueryItem(name: "query", value: text)]
-        guard let url = components.url else {
-            delegate?.webViewModel(self, errorOccured: NetworkError.badURL)
-            return
-        }
+        guard let url = components.url else { return }
         delegate?.webViewModel(self, didUpdate: URLRequest(url: url))
     }
 }

@@ -1,4 +1,5 @@
 disabled_rules:
+- todo
 - trailing_whitespace
 - force_cast
 - implicit_getter
@@ -10,7 +11,7 @@ excluded:
 - Pods
 - SwiftLint/Common/3rdPartyLib
 - WebFilter/SupportingFiles/SceneDelegate.swift
-- R.generated.swift
+- WebFilter/Resources/R.generated.swift
 line_length:
     warning: 170
     error: 200
