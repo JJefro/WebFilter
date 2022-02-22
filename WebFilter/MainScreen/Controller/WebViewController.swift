@@ -27,7 +27,7 @@ class WebViewController: UIViewController {
     }
     
     private func loadInitialURL() {
-        let googleComponents = model.googleComponents
+        let googleComponents = model.googleURLComponents
         guard let url = FormattedURL(string: googleComponents.host!).url else { return }
         webView.load(URLRequest(url: url))
     }
@@ -49,30 +49,10 @@ class WebViewController: UIViewController {
     }
     
     @objc func showCurrentFiltersButtonTapped(_ sender: UIButton) {
-        
-    }
-}
-
-// MARK: - NavigationView Delegate Methods
-extension WebViewController: NavigationViewDelegate {
-    func navigationView(_ navigationView: NavigationView, textFieldEditingDidEnd text: String) {
-        model.performValidationURL(text: text)
-    }
-}
-
-// MARK: - WKNavigation Delegate Methods
-extension WebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        guard let url = webView.url else { return }
-        title = url.host
-        navigationView.textfieldText = url.absoluteString
-    }
-}
-
-// MARK: - WebViewModel Delegate Methods
-extension WebViewController: WebViewModelDelegate {
-    func webViewModel(_ webViewModel: WebViewModel, didUpdate urlRequest: URLRequest) {
-        webView.load(urlRequest)
+        let viewController = FiltersListViewController()
+        viewController.filters = model.filters
+        viewController.delegate = self
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -116,7 +96,7 @@ private extension WebViewController {
     }
 }
 
-// MARK: -  WebViewController Alerts
+// MARK: - WebViewController Alerts
 private extension WebViewController {
     func presentAddFilterAlert() {
         let alert = UIAlertController(title: R.string.localizable.mainView_addFilterAlert_title(),
@@ -127,10 +107,12 @@ private extension WebViewController {
             textField.returnKeyType = .done
         }
         let addFilterButton = UIAlertAction(title: R.string.localizable.mainView_addFilterAlert_addButton_title(),
-                                            style: .default) { _ in
-            guard let text = alert.textFields?.first?.text else {return}
-            print(text)
-            // TODO: - Add text as filter in filterList
+                                            style: .default) { [weak self, weak alert] _ in
+            guard let self = self else { return }
+            guard let text = alert?.textFields?.first?.text else { return }
+            if !text.isEmpty {
+                self.model.filters.append(Filter(rawValue: text))
+            }
         }
         let cancelButton = UIAlertAction(title: R.string.localizable.mainView_addFilterAlert_cancelButton_title(),
                                          style: .cancel,
@@ -146,5 +128,35 @@ private extension WebViewController {
                                       style: .cancel,
                                       handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - NavigationView Delegate Methods
+extension WebViewController: NavigationViewDelegate {
+    func navigationView(_ navigationView: NavigationView, textFieldEditingDidEnd text: String) {
+        model.performValidationURL(text: text)
+    }
+}
+
+// MARK: - WKNavigation Delegate Methods
+extension WebViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        guard let url = webView.url else { return }
+        navigationItem.title = url.host
+        navigationView.textfieldText = url.absoluteString
+    }
+}
+
+// MARK: - WebViewModel Delegate Methods
+extension WebViewController: WebViewModelDelegate {
+    func webViewModel(_ webViewModel: WebViewModel, didUpdate urlRequest: URLRequest) {
+        webView.load(urlRequest)
+    }
+}
+
+// MARK: - FiltersListViewController Delegate Methods
+extension WebViewController: FiltersListViewControllerDelegate {
+    func filtersListViewController(_ filtersListViewController: FiltersListViewController, didUpdateFiltersList filters: [Filter]) {
+        model.filters = filters
     }
 }
