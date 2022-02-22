@@ -14,8 +14,9 @@ protocol WebViewModelDelegate: AnyObject {
 class WebViewModel {
 
     weak var delegate: WebViewModelDelegate?
+    var filters: [Filter] = [Filter(rawValue: "facebook"), Filter(rawValue: "google")]
 
-    var googleComponents: URLComponents = {
+    var googleURLComponents: URLComponents = {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "google.com"
@@ -38,7 +39,7 @@ class WebViewModel {
     }
     
     private func performGoogleSearch(text: String) {
-        var components = googleComponents
+        var components = googleURLComponents
         components.queryItems = [URLQueryItem(name: "query", value: text)]
         guard let url = components.url else { return }
         delegate?.webViewModel(self, didUpdate: URLRequest(url: url))

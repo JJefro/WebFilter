@@ -35,3 +35,5 @@
 "mainView_addFilterAlert_cancelButton_title"  = "Cancel";
 
 "mainView_errorAlert_cancelButton_title"  = "Cancel";
+
+"filtersListView_navBar_backButtonTitle"  = "Back";
