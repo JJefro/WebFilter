@@ -17,6 +17,7 @@ class FiltersListViewController: UIViewController {
 
     private var tableView = FiltersListTableView()
     private var dataSource = FiltersListTableViewDataSource()
+    private var viewModel = FilterListViewModel()
 
     var filters: [Filter] = [] {
         didSet {
@@ -31,6 +32,7 @@ class FiltersListViewController: UIViewController {
         configure()
         addViews()
         bind()
+        setAccessibilityIdentifiers()
     }
 
     @objc func addButtonTapped() {
@@ -59,7 +61,8 @@ private extension FiltersListViewController {
     func addTableView() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.trailing.leading.bottom.equalToSuperview().inset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
         }
     }
 
@@ -82,11 +85,11 @@ private extension FiltersListViewController {
         }
         let addFilterButton = UIAlertAction(title: R.string.localizable.mainView_addFilterAlert_addButton_title(),
                                             style: .default) { [weak self, weak alert] _ in
-            guard let self = self else { return }
-            guard let text = alert?.textFields?.first?.text else { return }
-            if !text.isEmpty {
-                self.filters.append(Filter(rawValue: text))
-                self.delegate?.filtersListViewController(self, didUpdateFiltersList: self.filters)
+            guard let self = self, let alert = alert,
+                  let text = alert.textFields?.first?.text, !text.isEmpty else { return }
+            let filter = Filter(rawValue: text)
+            if self.viewModel.isValidFilter(filter: filter) {
+                self.filters.append(filter)
             }
         }
         let cancelButton = UIAlertAction(title: R.string.localizable.mainView_addFilterAlert_cancelButton_title(),
@@ -98,8 +101,17 @@ private extension FiltersListViewController {
     }
 }
 
+// MARK: - FiltersListTableViewDataSource Delegate Methods
 extension FiltersListViewController: FiltersListTableViewDataSourceDelegate {
     func filtersListTableViewDataSource(_ filtersListTableViewDataSource: FiltersListTableViewDataSource, didRemoveFilter filter: Filter) {
         filters.removeAll(where: { $0 == filter })
+    }
+}
+
+// MARK: - FiltersListViewController Accessibility Identifiers
+private extension FiltersListViewController {
+    func setAccessibilityIdentifiers() {
+        view.accessibilityIdentifier = FiltersListViewAccessibilityID.filtersView
+        tableView.accessibilityIdentifier = FiltersListViewAccessibilityID.tableView
     }
 }

@@ -15,7 +15,7 @@ class NavigationView: UIView {
 
     weak var delegate: NavigationViewDelegate?
 
-    private let textFieldView = TextFieldView()
+    let textFieldView = TextFieldView()
     let returnButton = UIButton()
     let forwardButton = UIButton()
     let addFilterButton = UIButton()

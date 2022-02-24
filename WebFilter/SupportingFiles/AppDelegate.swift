@@ -15,7 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        let navController = UINavigationController(rootViewController: WebViewController())
+        let webViewController = WebViewController()
+        let filtersListViewController = FiltersListViewController()
+        let navController = UINavigationController(rootViewController: webViewController)
 
         if #available(iOS 13, *) {
             let barAppearance = UINavigationBarAppearance()
@@ -28,6 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             barAppearance.backgroundColor = R.color.navigationViewColors.backgroundColor()
             barAppearance.titleTextAttributes = [NSAttributedString.Key.font: R.font.sfProDisplayRegular(size: 15)!]
         }
+        
+        webViewController.model.onOpenFiltersListView = { filters in
+            filtersListViewController.filters = filters
+            filtersListViewController.delegate = webViewController
+            navController.pushViewController(filtersListViewController, animated: true)
+        }
+
         self.window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navController
         window?.makeKeyAndVisible()

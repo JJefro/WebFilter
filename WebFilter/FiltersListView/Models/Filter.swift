@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Filter: RawRepresentable {
+struct Filter: RawRepresentable, Codable {
     var rawValue: String
 }

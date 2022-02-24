@@ -12,7 +12,7 @@ class WebViewController: UIViewController {
     
     var webView: WKWebView!
     var navigationView = NavigationView()
-    var model = WebViewModel()
+    var model = WebViewModel(localDataSource: LocalDataSource())
     
     override func loadView() {
         super.loadView()
@@ -24,6 +24,7 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         bind()
         loadInitialURL()
+        setAccessibilityIdentifiers()
     }
     
     private func loadInitialURL() {
@@ -49,10 +50,7 @@ class WebViewController: UIViewController {
     }
     
     @objc func showCurrentFiltersButtonTapped(_ sender: UIButton) {
-        let viewController = FiltersListViewController()
-        viewController.filters = model.filters
-        viewController.delegate = self
-        navigationController?.pushViewController(viewController, animated: true)
+        model.onOpenFiltersListView?(model.filters)
     }
 }
 
@@ -108,10 +106,11 @@ private extension WebViewController {
         }
         let addFilterButton = UIAlertAction(title: R.string.localizable.mainView_addFilterAlert_addButton_title(),
                                             style: .default) { [weak self, weak alert] _ in
-            guard let self = self else { return }
-            guard let text = alert?.textFields?.first?.text else { return }
-            if !text.isEmpty {
-                self.model.filters.append(Filter(rawValue: text))
+            guard let self = self, let alert = alert,
+                  let text = alert.textFields?.first?.text, !text.isEmpty else { return }
+            let filter = Filter(rawValue: text)
+            if self.model.isValidFilter(filter: filter) {
+            self.model.filters.append(Filter(rawValue: text))
             }
         }
         let cancelButton = UIAlertAction(title: R.string.localizable.mainView_addFilterAlert_cancelButton_title(),
@@ -145,10 +144,18 @@ extension WebViewController: WKNavigationDelegate {
         navigationItem.title = url.host
         navigationView.textfieldText = url.absoluteString
     }
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        decisionHandler(model.isForbidden(urlResponse: navigationResponse.response))
+    }
 }
 
 // MARK: - WebViewModel Delegate Methods
 extension WebViewController: WebViewModelDelegate {
+    func webViewModel(_ webViewModel: WebViewModel, didAnAttemptToGetInForbiddenLink filter: Filter) {
+        showErrorAlert(withTitle: "Forbidden", withMessage: "By filter - " + filter.rawValue)
+    }
+
     func webViewModel(_ webViewModel: WebViewModel, didUpdate urlRequest: URLRequest) {
         webView.load(urlRequest)
     }
@@ -158,5 +165,21 @@ extension WebViewController: WebViewModelDelegate {
 extension WebViewController: FiltersListViewControllerDelegate {
     func filtersListViewController(_ filtersListViewController: FiltersListViewController, didUpdateFiltersList filters: [Filter]) {
         model.filters = filters
+    }
+}
+
+// MARK: - WebViewController AccessibilityIdentifiers
+private extension WebViewController {
+    func setAccessibilityIdentifiers() {
+        navigationController?.navigationBar.accessibilityIdentifier = WebViewAccessibilityID.navigationBar
+        view.accessibilityIdentifier = WebViewAccessibilityID.mainScreen
+
+        navigationView.accessibilityIdentifier = WebViewAccessibilityID.navigationView
+
+        navigationView.textFieldView.txtField.accessibilityIdentifier = WebViewAccessibilityID.NavigationView.searchTectField
+        navigationView.returnButton.accessibilityIdentifier = WebViewAccessibilityID.NavigationView.returnButton
+        navigationView.forwardButton.accessibilityIdentifier = WebViewAccessibilityID.NavigationView.forwardButton
+        navigationView.addFilterButton.accessibilityIdentifier = WebViewAccessibilityID.NavigationView.addFilterButton
+        navigationView.showCurrentFiltersButton.accessibilityIdentifier = WebViewAccessibilityID.NavigationView.showFilterListButton
     }
 }

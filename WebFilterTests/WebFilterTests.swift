@@ -6,29 +6,35 @@
 //
 
 import XCTest
+import WebKit
+@testable import WebFilter
 
 class WebFilterTests: XCTestCase {
-
+    
+    var mut: WebViewModel!
+    var localDataSource: LocalDataSourceProtocol!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        mut = WebViewModel(localDataSource: MockLocalDataSource())
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        mut = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func test_isForbiddenLink() throws {
+        mut.filters = [Filter(rawValue: "facebook")]
+        let forbiddenURL = URL(string: "www.facebook.com")
+        let forbiddenRequest = URLResponse(url: forbiddenURL!, mimeType: "", expectedContentLength: 0, textEncodingName: "")
+        XCTAssertEqual(mut.isForbidden(urlResponse: forbiddenRequest), WKNavigationResponsePolicy.cancel)
+        mut.filters.removeAll()
+        XCTAssertEqual(mut.isForbidden(urlResponse: forbiddenRequest), WKNavigationResponsePolicy.allow)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func test_isValidFilter() throws {
+        let forbiddenFilterWithSpace = Filter(rawValue: " facebook")
+        let forbiddenFilterOnlyTwoLetters = Filter(rawValue: "ok")
+        XCTAssertEqual(mut.isValidFilter(filter: forbiddenFilterWithSpace), false)
+        XCTAssertEqual(mut.isValidFilter(filter: forbiddenFilterOnlyTwoLetters), false)
     }
 }
