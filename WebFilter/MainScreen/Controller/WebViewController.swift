@@ -110,7 +110,7 @@ private extension WebViewController {
                   let text = alert.textFields?.first?.text, !text.isEmpty else { return }
             let filter = Filter(rawValue: text)
             if self.model.isValidFilter(filter: filter) {
-            self.model.filters.append(Filter(rawValue: text))
+            self.model.filters.append(filter)
             }
         }
         let cancelButton = UIAlertAction(title: R.string.localizable.mainView_addFilterAlert_cancelButton_title(),
